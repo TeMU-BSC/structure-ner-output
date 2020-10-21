@@ -1,0 +1,14 @@
+T1	NEG 96 99	sin
+T2	NSCO 100 104	foco
+T3	NEG 320 323	sin
+T4	NSCO 324 389	dolor torácico, irritación de garganta ni problemas respiratorios
+T5	NEG 596 598	no
+T6	NSCO 599 634	refirió antecedentes de alcoholismo
+T7	NEG 862 871	se retira
+T8	NEG 1658 1660	No
+T9	NEG 3492 3501	se retiró
+T10	NSCO 3502 3514	por completo
+T11	NEG 3554 3563	se retiró
+T12	NSCO 3564 3581	la oxigenoterapia
+T13	NEG 3666 3675	negativos
+T14	NSCO 3676 3696	persistentes de SARS

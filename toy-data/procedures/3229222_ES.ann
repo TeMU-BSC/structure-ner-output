@@ -1,0 +1,13 @@
+T1	PROCEDIMIENTO 576 594	exploración física
+T2	PROCEDIMIENTO 643 668	auscultación respiratoria
+T3	PROCEDIMIENTO 843 861	electrocardiograma
+T4	PROCEDIMIENTO 947 967	radiografía de tórax
+T5	PROCEDIMIENTO 1541 1556	ecocardiografía
+T6	PROCEDIMIENTO 2035 2050	coronariografía
+T7	PROCEDIMIENTO 2156 2176	catéter de Swan-Ganz
+T8	PROCEDIMIENTO 2284 2310	reanimación cardiopulmonar
+T9	PROCEDIMIENTO 2312 2340	pericardiocentesis emergente
+T10	PROCEDIMIENTO 2371 2398	altas dosis de vasopresores
+T11	PROCEDIMIENTO 2465 2479	ecocardiograma
+T12	PROCEDIMIENTO 2609 2700	balón de contrapulsación y oxigenador extracorpóreo de membrana (ECMO) venoarterial femoral
+T13	PROCEDIMIENTO 2864 2885	tratamiento antiviral

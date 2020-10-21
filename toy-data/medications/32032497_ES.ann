@@ -1,0 +1,9 @@
+T1	PROTEINAS 365 379	leucocitopenia
+T2	PROTEINAS 644 663	proteína C-reactiva
+T3	PROTEINAS 778 797	proteína amiloide A
+T4	PROTEINAS 842 868	aspartato-aminotransferasa
+T5	PROTEINAS 908 932	alanina-aminotransferasa
+T6	NORMALIZABLES 1124 1135	ganciclovir
+T7	NORMALIZABLES 1137 1148	oseltamivir
+T8	NORMALIZABLES 1171 1180	meropenem
+T9	NORMALIZABLES 1182 1191	linezolid

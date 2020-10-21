@@ -1,0 +1,25 @@
+T1	SINTOMA 89 95	fiebre
+T2	SINTOMA 107 110	tos
+T3	SINTOMA 172 178	fiebre
+T4	SINTOMA 209 223	tos productiva
+T5	SINTOMA 243 259	congestión nasal
+T6	SINTOMA 261 269	rinorrea
+T7	SINTOMA 271 276	mareo
+T8	SINTOMA 278 284	fatiga
+T9	SINTOMA 286 303	opresión torácica
+T10	SINTOMA 306 313	náuseas
+T11	SINTOMA 324 338	dolor torácico
+T12	SINTOMA 340 362	irritación de garganta
+T13	SINTOMA 366 389	problemas respiratorios
+T14	SINTOMA 569 576	fumador
+T15	SINTOMA 1734 1752	disnea espiratoria
+T16	SINTOMA 1780 1788	letargia
+T17	SINTOMA 2445 2466	engrosamiento pleural
+T18	SINTOMA 3150 3159	febrícula
+T19	SINTOMA 3244 3261	opresión torácica
+T20	SINTOMA 3264 3270	disnea
+T21	SINTOMA 3322 3336	tos productiva
+T22	SINTOMA 3356 3372	congestión nasal
+T23	SINTOMA 3374 3382	rinorrea
+T24	SINTOMA 3384 3389	mareo
+T25	SINTOMA 3392 3398	fatiga

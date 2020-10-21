@@ -1,0 +1,18 @@
+T1	NEG 434 445	ausencia de
+T2	NSCO 446 468	síntomas respiratorios
+T3	NEG 1024 1027	sin
+T4	NSCO 1028 1039	infiltrados
+T5	NEG 1154 1167	negativo para
+T6	NSCO 1168 1178	adenovirus
+T7	NEG 1700 1703	sin
+T8	NSCO 1704 1718	segmentarismos
+T9	UNC 1750 1760	sin claros
+T10	USCO 1761 1793	signos de deterioro hemodinámico
+T11	NEG 2001 2004	sin
+T12	NSCO 2005 2019	segmentarismos
+T13	NEG 2021 2023	no
+T14	NSCO 2024 2050	se realizó coronariografía
+T15	UNC 2060 2068	sospecha
+T16	USCO 2069 2104	clínica de síndrome coronario agudo
+T17	NEG 2261 2264	sin
+T18	NSCO 2265 2310	pulso que requirió reanimación cardiopulmonar
