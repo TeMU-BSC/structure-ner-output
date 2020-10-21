@@ -1,3 +1,5 @@
 *.py[cod]
 __pycache__
 other-stuff
+toy-data/tmp
+toy-data/out
