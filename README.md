@@ -69,11 +69,11 @@ python main.py -d $HOME/toy-data -n 5
 ```
 
 **CAREFUL:** TEMUnormalizer works with absolute paths! 
+
 **NOTE:** TEMUnormalizer is the slowest process here. Therefore, you are asked whether you want to do it everytime, for every label.
 
 ## Todos
 
-  - commit scripts
   - add license
 
 
