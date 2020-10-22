@@ -73,17 +73,18 @@ def clean_ner_output(df, remove_only_numbers=True):
     
     # 2.5 OPT: If one span_normalized have several labels, keep the most frequent label
     # Create dict to replace the duplicated span_normalized by the label which is most frequent
-    aux = df.groupby(['span_normalized', 'label'], as_index=False)\
-        .count()[['span_normalized', 'label', 'filename']].copy()
-    aux.columns = ['span_normalized', 'label', 'count']
-    aux = aux.sort_values(by=['count'])
-    aux = aux.drop_duplicates(['span_normalized'], keep='last').copy()
-    span_norm2label = dict(zip(aux.span_normalized, aux.label))
-    # Replace
-    for idx, row in df.iterrows():
-        span_norm = df.loc[idx, 'span_normalized']
-        if span_norm in span_norm2label.keys():
-            df.loc[idx, 'label'] = span_norm2label[span_norm]
+    if df.label.value_counts().shape[0]>1:
+        aux = df.groupby(['span_normalized', 'label'], as_index=False)\
+            .count()[['span_normalized', 'label', 'filename']].copy()
+        aux.columns = ['span_normalized', 'label', 'count']
+        aux = aux.sort_values(by=['count'])
+        aux = aux.drop_duplicates(['span_normalized'], keep='last').copy()
+        span_norm2label = dict(zip(aux.span_normalized, aux.label))
+        # Replace
+        for idx, row in df.iterrows():
+            span_norm = df.loc[idx, 'span_normalized']
+            if span_norm in span_norm2label.keys():
+                df.loc[idx, 'label'] = span_norm2label[span_norm]
     
     
     # 2.6. Remove duplicated entries & reset index

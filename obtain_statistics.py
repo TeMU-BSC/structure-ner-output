@@ -67,40 +67,44 @@ def obtain_statistics(df, path, label, ndocs):
     df['filename_certain'] = df['filename_certain'].apply(lambda x: ', '.join(x))
     df['doc_perc(%)'] = df['doc_freq'].apply(lambda x: round(100*(x/ndocs), 2))
     term_freq = df['span_normalized'].value_counts()
+    term_freq = term_freq.to_frame('term_freq').copy()
+    term_freq['span_normalized'] = term_freq.index
+    term_freq = term_freq.reset_index(drop=True).copy()
     
     # Assign term freq
-    df['term_freq'] = 0
-    for idx, row in df.iterrows():
-        span_norm = df.loc[idx, 'span_normalized']
-        df.loc[idx, 'term_freq'] = term_freq[span_norm]
+    df = df.merge(term_freq,how='left', on=['span_normalized']).copy()
+    print(df.shape)
+    df = df.loc[df['term_freq'] > 1,:].copy()
+    print(df.shape)
     
     # 3.3 Add lemma
     print('Adding lemma...')
     start = time.time()
     # TODO: Med_Tagger sometimes fails. Need to do some research here
     # TODO: Solve issue: PROBABILITIES: Empty ambiguity class for word 'díaz'. Duplicate NP analysis??
-    df['lemma'] = ''
-    for idx, row in df.iterrows():
-        span_norm = df.loc[idx, 'span_lower']
+    span_lower = df['span_lower'].drop_duplicates().to_frame('span_lower').copy()
+    span_lower['lemma'] = ''
+    for idx, row in span_lower.iterrows():
+        span = span_lower.loc[idx, 'span_lower']
         try:
-            df.loc[idx, 'lemma'] = \
-            ' '.join(list(map(lambda x: x[1], tag.parse(span_norm))))
+            span_lower.loc[idx, 'lemma'] = \
+            ' '.join(list(map(lambda x: x[1], tag.parse(span))))
         except:
-            df.loc[idx, 'lemma'] = \
-                ' '.join(list(map(lambda x: x[1], tag.parse(span_norm))))
+            pass
+    df = df.merge(span_lower,how='left', on=['span_lower']).copy()
     print("Elapsed time since 'Adding lemma...' message: "
           + str(round(time.time()-start, 2)) + 's')
     
     # 3.4 Extract list of normalized terms
-    df['span_lower'].to_csv(os.path.join(path, 'tmp/terms_to_map_' + label + '.txt'), 
+    df['span_lower'].drop_duplicates().to_csv(os.path.join(path, 'tmp/terms_to_map_' + label + '.txt'), 
                header=None,index=False)
     
     # 3.5 Calculate Snomed IDs
     # TODO: There is a bug in TEMUnormalizer and some terms are not present in
     # TEMUnormalizer output. Need to do some research here
     # Merge normalized terms with existing DataFrame
-    run_normalizer = input("Run TEMUnormalizer.py for label {}?".format(label) + " Type 'Y' for YES, any other key for NO: ")
-    #run_normalizer = 'y'
+    #run_normalizer = input("Run TEMUnormalizer.py for label {}?".format(label) + " Type 'Y' for YES, any other key for NO: ")
+    run_normalizer = 'y'
     if run_normalizer.lower() == 'y':
         print('Calculating Snomed IDs with TEMUnormalizer...')
         start = time.time()
