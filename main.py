@@ -42,7 +42,11 @@ if __name__ == '__main__':
         
     #### 2. Add negation and uncertainty as column ###
     # TODO: modify all functions. Now dataframes have one extra column
+    print('Formatting negation and uncertainty info...')
+    t1 = time.time()
     df_neg = integrate_negation_uncertainty(df)
+    print("Elapsed time since 'Formatting negation and uncertainty info...' message: "
+          + str(round(time.time()-t1, 2)) + 's')
     
     # Get one dataframe per label
     # OUTPUT: One dataframe with raw NER output per entity

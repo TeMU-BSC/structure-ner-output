@@ -10,6 +10,7 @@ import os
 from Med_Tagger import Med_Tagger
 import subprocess
 import numpy as np
+import time
 
 tag = Med_Tagger()
 
@@ -75,6 +76,7 @@ def obtain_statistics(df, path, label, ndocs):
     
     # 3.3 Add lemma
     print('Adding lemma...')
+    start = time.time()
     # TODO: Med_Tagger sometimes fails. Need to do some research here
     # TODO: Solve issue: PROBABILITIES: Empty ambiguity class for word 'díaz'. Duplicate NP analysis??
     df['lemma'] = ''
@@ -86,7 +88,9 @@ def obtain_statistics(df, path, label, ndocs):
         except:
             df.loc[idx, 'lemma'] = \
                 ' '.join(list(map(lambda x: x[1], tag.parse(span_norm))))
-                
+    print("Elapsed time since 'Adding lemma...' message: "
+          + str(round(time.time()-start, 2)) + 's')
+    
     # 3.4 Extract list of normalized terms
     df['span_lower'].to_csv(os.path.join(path, 'tmp/terms_to_map_' + label + '.txt'), 
                header=None,index=False)
@@ -95,10 +99,10 @@ def obtain_statistics(df, path, label, ndocs):
     # TODO: There is a bug in TEMUnormalizer and some terms are not present in
     # TEMUnormalizer output. Need to do some research here
     # Merge normalized terms with existing DataFrame
-    run_normalizer = input("Run TEMUnormalizer.py for label {}?".format(label) + 
-                           " Type 'Y' for YES, any other key for NO: ")
+    run_normalizer = 'y' #input("Run TEMUnormalizer.py for label {}?".format(label) + " Type 'Y' for YES, any other key for NO: ")
     if run_normalizer.lower() == 'y':
         print('Calculating Snomed IDs with TEMUnormalizer...')
+        start = time.time()
         cwd = os.getcwd()
         command1 = 'cd /home/antonio/resources/tools/TEMUNormalizer'
         command2 = ('python TEMUnormalizer.py -t ' + 
@@ -108,7 +112,9 @@ def obtain_statistics(df, path, label, ndocs):
         process = subprocess.Popen(command1 + ' && ' + command2 + ' && ' + command3,
                                    shell=True, stdout=subprocess.PIPE)
         process.wait()
-
+        print("Elapsed time since 'Calculating Snomed IDs with TEMUnormalizer...' message: "
+          + str(round(time.time()-start, 2)) + 's')
+        
     df_snomed = pd.read_csv(os.path.join(path, 'tmp/mapped_list_snomed_' + label + '.tsv'),
                             sep='\t', header=None, 
                             names=['span_lower', 'snomedid', 'confidence'])
