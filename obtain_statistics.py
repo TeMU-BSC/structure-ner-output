@@ -99,7 +99,8 @@ def obtain_statistics(df, path, label, ndocs):
     # TODO: There is a bug in TEMUnormalizer and some terms are not present in
     # TEMUnormalizer output. Need to do some research here
     # Merge normalized terms with existing DataFrame
-    run_normalizer = 'y' #input("Run TEMUnormalizer.py for label {}?".format(label) + " Type 'Y' for YES, any other key for NO: ")
+    run_normalizer = input("Run TEMUnormalizer.py for label {}?".format(label) + " Type 'Y' for YES, any other key for NO: ")
+    #run_normalizer = 'y'
     if run_normalizer.lower() == 'y':
         print('Calculating Snomed IDs with TEMUnormalizer...')
         start = time.time()
@@ -122,13 +123,14 @@ def obtain_statistics(df, path, label, ndocs):
         
     
     # 3.6 Drop useless columns
-    df_final = df_final.drop(['offset1', 'offset2', 'confidence'], axis=1)
+    df_final = df_final.drop(['confidence'], axis=1)
     df_final = df_final[['span_lower', 'label', 'doc_freq', 'doc_perc(%)', 
                          'term_freq', 'lemma', 'snomedid', 'span',
-                         'span_normalized','NSCO', 'USCO','filename', 
-                         'filename_positive', 'filename_certain']].copy()
+                         'span_normalized','NSCO', 'USCO','offset1', 'offset2', 
+                         'filename', 'filename_positive', 'filename_certain']].copy()
     df_final.columns = ['span_lower', 'label', 'doc_freq', 'doc_perc(%)', 
                          'term_freq', 'lemma', 'snomedid', 'original_span', 
-                         'span_normalized','NSCO', 'USCO', 'filename', 'filename_positive', 'filename_certain']
+                         'span_normalized','NSCO', 'USCO', 'offset1', 'offset2', 
+                         'filename', 'filename_positive', 'filename_certain']
     
     return df_final

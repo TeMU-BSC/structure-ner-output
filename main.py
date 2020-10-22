@@ -108,34 +108,42 @@ if __name__ == '__main__':
     
     #### 5. Export output ####
     df_demo_final.drop_duplicates(['span_normalized','filename']).\
-        sort_values(by=['term_freq', 'span_lower'], ascending=False).\
+        drop(['NSCO', 'USCO','offset1', 'offset2'], axis=1).\
+            sort_values(by=['term_freq', 'span_lower'], ascending=False).\
         to_csv(os.path.join(path, 'out/terms_demographics.tsv'), sep='\t', 
                header=True, index=False)
     df_eo_final.drop_duplicates(['span_normalized','filename']).\
-        sort_values(by=['term_freq', 'span_lower'], ascending=False).\
+        drop(['NSCO', 'USCO','offset1', 'offset2'], axis=1).\
+            sort_values(by=['term_freq', 'span_lower'], ascending=False).\
         to_csv(os.path.join(path, 'out/terms_observable_entity.tsv'), sep='\t', 
                header=True, index=False)
     df_proc_final.drop_duplicates(['span_normalized','filename']).\
-        sort_values(by=['term_freq', 'span_lower'], ascending=False).\
+        drop(['NSCO', 'USCO','offset1', 'offset2'], axis=1).\
+            sort_values(by=['term_freq', 'span_lower'], ascending=False).\
         to_csv(os.path.join(path, 'out/terms_procedure.tsv'), sep='\t', 
                header=True, index=False)
     df_symp_final.drop_duplicates(['span_normalized','filename']).\
-        sort_values(by=['term_freq', 'span_lower'], ascending=False).\
+        drop(['NSCO', 'USCO','offset1', 'offset2'], axis=1).\
+            sort_values(by=['term_freq', 'span_lower'], ascending=False).\
         to_csv(os.path.join(path, 'out/terms_symptom.tsv'), sep='\t', 
                header=True, index=False)
     df_dis_final.drop_duplicates(['span_normalized','filename']).\
-        sort_values(by=['term_freq', 'span_lower'], ascending=False).\
+        drop(['NSCO', 'USCO','offset1', 'offset2'], axis=1).\
+            sort_values(by=['term_freq', 'span_lower'], ascending=False).\
         to_csv(os.path.join(path, 'out/terms_disease.tsv'), sep='\t', 
                header=True, index=False)
     df_prot_final.drop_duplicates(['span_normalized','filename']).\
-        sort_values(by=['term_freq', 'span_lower'], ascending=False).\
+        drop(['NSCO', 'USCO','offset1', 'offset2'], axis=1).\
+            sort_values(by=['term_freq', 'span_lower'], ascending=False).\
         to_csv(os.path.join(path, 'out/terms_protein.tsv'), sep='\t', 
                header=True, index=False)
     df_med_final.drop_duplicates(['span_normalized','filename']).\
-        sort_values(by=['term_freq', 'span_lower'], ascending=False).\
+        drop(['NSCO', 'USCO','offset1', 'offset2'], axis=1).\
+            sort_values(by=['term_freq', 'span_lower'], ascending=False).\
         to_csv(os.path.join(path, 'out/terms_medication.tsv'), sep='\t', 
                header=True, index=False)
     df_spec_final.drop_duplicates(['span_normalized','filename']).\
-        sort_values(by=['term_freq', 'span_lower'], ascending=False).\
+        drop(['NSCO', 'USCO','offset1', 'offset2'], axis=1).\
+            sort_values(by=['term_freq', 'span_lower'], ascending=False).\
         to_csv(os.path.join(path, 'out/terms_species.tsv'), sep='\t', 
                header=True, index=False)
