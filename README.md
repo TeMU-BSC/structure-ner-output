@@ -2,9 +2,24 @@
 
 ## Description
 
-- Input: Named Entity Recognition (NER) output
+- Input: Directory with Named Entity Recognition (NER) output in Brat. Must follow the toy-data directory structure.
 
-- Steps: 
+- Output: Structured and normalized information in tab-separated format. Columns: 
+	- span_lower: text span lowercased
+	- label: entity label 
+	- doc_freq_: number of documents where this span_normalized appears
+	- doc_perc(%)_: percentage of documents where this span_normalized appears
+	- term_freq_: number of times this span_normalized appears
+	- lemma: lemma of span_lower
+	- snomedid: snomedID of span_lower
+	- original_span: original text span
+	- span_normalized: text span lowercased, without extra whitespaces, punctuation and accents
+	- filename: list of file IDs where the span_normalized appears
+	- filename_positive_: list of file IDs where the span_normalized appears AND it is not negated
+	- filename_certain_: list of file IDs where the span_normalized appears AND it is not uncertain
+
+
+- Steps from INPUT to OUTPUT: 
 	1. Parse NER output
 	2. Remove unused entities and rename undescriptive ones
 	3. Harmonize negation and uncertainty information
@@ -15,7 +30,7 @@
 	8. Map the original text span (lowercased and without the extra whitespaces) to Snomed ID
 	9. Drop duplicates based on span normalized and filename
 
-- Output: Structured and normalized information
+
 
 EXTRA: a posteriori we may map the Snomed IDs to UMLS CUI.
 
