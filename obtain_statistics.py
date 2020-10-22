@@ -14,6 +14,13 @@ import time
 
 tag = Med_Tagger()
 
+def med_tagger(x):
+    
+    try:
+        y = ' '.join(list(map(lambda x: x[1], tag.parse(x))))
+    except:
+        y = ''
+    return y
 
 def obtain_statistics(df, path, label, ndocs):
     '''
@@ -74,7 +81,7 @@ def obtain_statistics(df, path, label, ndocs):
     # Assign term freq
     df = df.merge(term_freq,how='left', on=['span_normalized']).copy()
     print(df.shape)
-    df = df.loc[df['term_freq'] > 1,:].copy()
+    #df = df.loc[df['term_freq'] > 1,:].copy()
     print(df.shape)
     
     # 3.3 Add lemma
@@ -83,14 +90,7 @@ def obtain_statistics(df, path, label, ndocs):
     # TODO: Med_Tagger sometimes fails. Need to do some research here
     # TODO: Solve issue: PROBABILITIES: Empty ambiguity class for word 'díaz'. Duplicate NP analysis??
     span_lower = df['span_lower'].drop_duplicates().to_frame('span_lower').copy()
-    span_lower['lemma'] = ''
-    for idx, row in span_lower.iterrows():
-        span = span_lower.loc[idx, 'span_lower']
-        try:
-            span_lower.loc[idx, 'lemma'] = \
-            ' '.join(list(map(lambda x: x[1], tag.parse(span))))
-        except:
-            pass
+    span_lower['lemma'] = span_lower['span_lower'].apply(lambda x: med_tagger(x))
     df = df.merge(span_lower,how='left', on=['span_lower']).copy()
     print("Elapsed time since 'Adding lemma...' message: "
           + str(round(time.time()-start, 2)) + 's')
